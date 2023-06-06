@@ -2,7 +2,6 @@ const tbody = document.querySelector(".listar-usuarios");
 const cadForm = document.getElementById("cad-usuario-form");
 const msgAlertaErroCad = document.getElementById("msgAlertaErroCad");
 const msgAlerta = document.getElementById("msgAlerta");
-const cadModal = new bootstrap.Modal(document.getElementById("cadUsuarioModal"));
 
 const listarUsuarios = async (pagina) => {
     const dados = await fetch("./list.php?pagina=" + pagina);
@@ -32,7 +31,6 @@ cadForm.addEventListener("submit", async (e) => {
     }else{
         msgAlerta.innerHTML = resposta['msg'];
         cadForm.reset();
-        cadModal.hide();
         listarUsuarios(1);
     }
     document.getElementById("cad-usuario-btn").value = "Cadastrar";

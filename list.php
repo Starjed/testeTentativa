@@ -21,17 +21,16 @@ $result_registros = $conn->prepare($query_registros);
 $result_registros->execute();
 
 // Montar a tabela de registros
-$dados = "<div class='table-responsive w-50'>
-            <table class='table table-striped table-bordered'>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Descricao</th>
-                        <th>Valor</th>
-                        <th>Tipo</th>
-                    </tr>
-                </thead>
-                <tbody>";
+$dados = "<table class='table table-striped'>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>";
 while ($row_usuario = $result_registros->fetch(PDO::FETCH_ASSOC)) {
     extract($row_usuario);
     $cor = ($tipo == 'entrada') ? 'green' : 'red';
@@ -41,11 +40,9 @@ while ($row_usuario = $result_registros->fetch(PDO::FETCH_ASSOC)) {
                     <td style='color: $cor;'>$valor</td>
                     <td>$tipo</td>
                 </tr>";
-
 }
 $dados .= "</tbody>
-                        </table>
-                    </div>";
+            </table>";
 
 // Montar o JSON com os totais para o gráfico
 $dados_json = json_encode($totais);
